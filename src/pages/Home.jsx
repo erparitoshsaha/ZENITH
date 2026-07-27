@@ -608,22 +608,22 @@ function LifestyleShowcaseSlider({ products, onPageChange, homeImages }) {
     {
       name: 'MIDNIGHT BLACK',
       fullName: 'Khroniq Midnight Black',
-      lifestyleImg: homeImages.hero_slide3_lifestyle || '/assets/lifestyle_pink_watch_generated.png',
-      productImg: homeImages.hero_slide3_product || '/assets/watch_uploaded_2.jpg',
+      lifestyleImg: '/assets/lifestyle_pink_watch_generated.png',
+      productImg: '/assets/watch_uploaded_2.jpg',
       lifestyleStyle: { filter: 'brightness(0.85) contrast(1.1)', backgroundPosition: 'center 30%' },
     },
     {
       name: 'COBALT BLUE',
       fullName: 'Khroniq Cobalt Blue',
-      lifestyleImg: homeImages.hero_slide4_lifestyle || '/assets/lifestyle_blue_new.png',
-      productImg: homeImages.hero_slide4_product || '/assets/watch_uploaded_1.jpg',
+      lifestyleImg: '/assets/lifestyle_blue_new.png',
+      productImg: '/assets/watch_uploaded_1.jpg',
       lifestyleStyle: { filter: 'brightness(0.85) contrast(1.1)', backgroundPosition: 'center 30%' },
     },
     {
       name: 'STERLING SILVER',
       fullName: 'Khroniq Sterling Silver',
-      lifestyleImg: homeImages.hero_slide5_lifestyle || '/assets/lifestyle_silver_new.png',
-      productImg: homeImages.hero_slide5_product || '/assets/watch_uploaded_5.jpg',
+      lifestyleImg: '/assets/lifestyle_silver_new.png',
+      productImg: '/assets/watch_uploaded_5.jpg',
       lifestyleStyle: { filter: 'brightness(0.85) contrast(1.1)', backgroundPosition: 'center 30%' },
     }
   ];
