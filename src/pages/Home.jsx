@@ -783,9 +783,30 @@ function LifestyleShowcaseSlider({ products, onPageChange, homeImages }) {
   );
 }
 
+const defaultHomeImages = {
+  gender_men: '/assets/men_watches.jpg',
+  gender_women: '/assets/women_watches_beach.jpg',
+  collection_khronomaster: '/assets/watch_green.jpg',
+  collection_defy: '/assets/watch_red.jpg',
+  collection_heritage: '/assets/watch_green.jpg',
+  hero_slide1_lifestyle: '/assets/lifestyle_red.png',
+  hero_slide1_product: '/assets/watch_red.jpg',
+  hero_slide2_lifestyle: '/assets/lifestyle_green.png',
+  hero_slide2_product: '/assets/watch_green.jpg',
+  hero_slide3_lifestyle: '/assets/lifestyle_pink_watch_generated.png',
+  hero_slide3_product: '/assets/watch_uploaded_2.jpg',
+  hero_slide4_lifestyle: '/assets/lifestyle_blue_new.png',
+  hero_slide4_product: '/assets/watch_uploaded_1.jpg',
+  hero_slide5_lifestyle: '/assets/lifestyle_silver_new.png',
+  hero_slide5_product: '/assets/watch_uploaded_5.jpg',
+  khronomaster_professional: '/assets/spotlight_green_side.png',
+  dive_deeper_tile1: '/assets/spotlight_green_side.png',
+  dive_deeper_tile2: '/assets/spotlight_red_overhead.png'
+};
+
 export default function Home({ onPageChange, onUpdatesOpen, onUpdatesClose, updatesOpen }) {
   const products = useSelector(state => state.watch.products);
-  const [homeImages, setHomeImages] = useState({});
+  const [homeImages, setHomeImages] = useState(defaultHomeImages);
   const [selectedProductIndex, setSelectedProductIndex] = useState(0);
   const spotlightImages = [
     homeImages.khronomaster_professional || "/assets/spotlight_green_side.png",
@@ -811,7 +832,9 @@ export default function Home({ onPageChange, onUpdatesOpen, onUpdatesClose, upda
     fetch('/api/admin/media/public')
       .then(res => res.json())
       .then(data => {
-        if (data.success) setHomeImages(data.media);
+        if (data && data.success && data.media) {
+          setHomeImages(prev => ({ ...prev, ...data.media }));
+        }
       })
       .catch(err => console.error('Failed to fetch homepage media:', err));
   }, []);

@@ -287,7 +287,7 @@ const getMockProducts = () => [
 ].map(p => ({ ...p, price: p.price * 83, discountPercent: p.discountPercent || 0 }));
 
 const initialState = {
-  products: [],
+  products: getMockProducts(),
   cart: loadSaved('khroniq_cart', []),
   wishlist: loadSaved('khroniq_wishlist', []),
   orders: [],
