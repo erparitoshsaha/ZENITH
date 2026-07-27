@@ -788,7 +788,7 @@ export default function Home({ onPageChange, onUpdatesOpen, onUpdatesClose, upda
   const [homeImages, setHomeImages] = useState({});
   const [selectedProductIndex, setSelectedProductIndex] = useState(0);
   const spotlightImages = [
-    "/assets/spotlight_green_side.png",
+    homeImages.khronomaster_professional || "/assets/spotlight_green_side.png",
     "/assets/watch_red.jpg",
     "/assets/t6.png",
     "/assets/watch_uploaded_3.jpg",
