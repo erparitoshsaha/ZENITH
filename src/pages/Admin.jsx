@@ -407,9 +407,7 @@ const [tempCaseColor, setTempCaseColor] = useState('#ffffff');
     { key: 'hero_slide4_lifestyle', label: 'Hero Slide 4 — Cobalt Blue (Lifestyle)' },
     { key: 'hero_slide4_product', label: 'Hero Slide 4 — Cobalt Blue (Watch)' },
     { key: 'hero_slide5_lifestyle', label: 'Hero Slide 5 — Sterling Silver (Lifestyle)' },
-    { key: 'hero_slide5_product', label: 'Hero Slide 5 — Sterling Silver (Watch)' },
-    { key: 'dive_deeper_tile1', label: 'Spotlight Tile 1 — Khroniq Emerald Green' },
-    { key: 'dive_deeper_tile2', label: 'Spotlight Tile 2 — Khroniq Crimson Red' }
+    { key: 'hero_slide5_product', label: 'Hero Slide 5 — Sterling Silver (Watch)' }
   ];
 
   useEffect(() => {
