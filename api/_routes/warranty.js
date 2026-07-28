@@ -5,11 +5,23 @@ import { protect } from '../_middleware/auth.js';
 const router = express.Router();
 
 // @route   POST /api/warranty/lookup
-// @desc    Get the logged-in user's purchased watches (serial numbers only — no claim codes)
+// @desc    Get purchased watches for warranty registration (serial numbers only — no claim codes).
+//          Regular customers are always locked to their own JWT email — the 'email' field in the
+//          request body is only honored when the requester is an admin, so a customer can never
+//          spoof another user's email to see their purchases.
 // @access  Private
 router.post('/lookup', protect, async (req, res) => {
   try {
-    const orders = await Order.find({ userEmail: req.user.email.toLowerCase() });
+    const isAdmin = req.user.role === 'admin';
+    const requestedEmail = typeof req.body.email === 'string' ? req.body.email.trim() : '';
+
+    if (isAdmin && !requestedEmail) {
+      return res.status(400).json({ success: false, message: 'Please provide the customer\'s email to look up.' });
+    }
+
+    const targetEmail = (isAdmin ? requestedEmail : req.user.email).toLowerCase();
+
+    const orders = await Order.find({ userEmail: targetEmail });
 
     const purchases = [];
     orders.forEach(order => {
@@ -37,7 +49,8 @@ router.post('/lookup', protect, async (req, res) => {
 });
 
 // @route   POST /api/warranty/claim
-// @desc    Verify serial + claim code against a real order item, then mark it claimed
+// @desc    Verify serial + claim code against a real order item, then mark it claimed.
+//          Same admin-override rule as /lookup: 'email' in the body is only honored for admins.
 // @access  Private
 router.post('/claim', protect, async (req, res) => {
   const { userName, serialNumber, specialCode, country, stateName, phoneNumber } = req.body;
@@ -47,8 +60,17 @@ router.post('/claim', protect, async (req, res) => {
   }
 
   try {
+    const isAdmin = req.user.role === 'admin';
+    const requestedEmail = typeof req.body.email === 'string' ? req.body.email.trim() : '';
+
+    if (isAdmin && !requestedEmail) {
+      return res.status(400).json({ success: false, message: 'Please provide the customer\'s email.' });
+    }
+
+    const targetEmail = (isAdmin ? requestedEmail : req.user.email).toLowerCase();
+
     const order = await Order.findOne({
-      userEmail: req.user.email.toLowerCase(),
+      userEmail: targetEmail,
       'items.serialNumber': serialNumber
     });
 
@@ -83,7 +105,7 @@ router.post('/claim', protect, async (req, res) => {
       details: {
         status: 'Active & Certified',
         registeredTo: userName,
-        registeredEmail: req.user.email,
+        registeredEmail: targetEmail,
         watchModel: item.name,
         warrantyMonths: item.warrantyMonths || 6,
         serialNumber: item.serialNumber,

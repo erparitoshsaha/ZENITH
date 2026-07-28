@@ -102,6 +102,12 @@ export default function WarrantyDrawer({ isOpen, onClose }) {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
 
+  // Admins can look up warranty records for a specific customer by typing their email.
+  // Regular customers stay locked to their own account email (never editable, never sent —
+  // the backend always derives it from the JWT for them, as a security guarantee).
+  const isAdmin = currentUser?.role === 'admin';
+  const [lookupEmail, setLookupEmail] = useState(isAdmin ? '' : (currentUser?.email || ''));
+
   // Country / State / City / Phone — sent only on final claim, saved as extra info on the claim record
   const [country, setCountry] = useState('India');
   const [stateName, setStateName] = useState('Maharashtra');
@@ -121,7 +127,9 @@ export default function WarrantyDrawer({ isOpen, onClose }) {
 
   const [verificationResult, setVerificationResult] = useState(null);
 
-  // Retrieve purchases via API — email comes from the JWT server-side, never sent from here
+  // Retrieve purchases via API — for regular customers, email comes from the JWT
+  // server-side and this field is ignored entirely (locked, can't be spoofed).
+  // For admins, the typed lookupEmail is sent and used to find that customer's purchases.
   const handleRetrievePurchases = async (e) => {
     e.preventDefault();
     if (!ownerName.trim()) {
@@ -132,6 +140,10 @@ export default function WarrantyDrawer({ isOpen, onClose }) {
       setErrorMsg('Phone number is required.');
       return;
     }
+    if (isAdmin && !lookupEmail.trim()) {
+      setErrorMsg('Please enter the customer\'s email to look up their warranty.');
+      return;
+    }
     setLoading(true);
     setErrorMsg('');
 
@@ -139,7 +151,7 @@ export default function WarrantyDrawer({ isOpen, onClose }) {
       const response = await fetch('/api/warranty/lookup', {
         method: 'POST',
         headers: getAuthHeaders(),
-        body: JSON.stringify({})
+        body: JSON.stringify(isAdmin ? { email: lookupEmail.trim() } : {})
       });
       const data = await response.json();
 
@@ -202,7 +214,8 @@ export default function WarrantyDrawer({ isOpen, onClose }) {
           country,
           stateName,
           city,
-          phoneNumber
+          phoneNumber,
+          ...(isAdmin ? { email: lookupEmail.trim() } : {})
         })
       });
       const data = await response.json();
@@ -229,6 +242,7 @@ export default function WarrantyDrawer({ isOpen, onClose }) {
   const resetDrawer = () => {
     setStep('details');
     setOwnerName(currentUser?.name || '');
+    setLookupEmail(isAdmin ? '' : (currentUser?.email || ''));
     setPurchases([]);
     setWatchSearchText('');
     setSelectedPurchase(null);
@@ -315,22 +329,37 @@ export default function WarrantyDrawer({ isOpen, onClose }) {
                 </div>
               </div>
 
-              {/* Owner Email — locked to logged-in account */}
+              {/* Owner Email — locked to the logged-in account for customers; admins can type any customer's email to look up their warranty */}
               <div className="space-y-1.5">
-                <label className="text-[8px] warranty-portal-label !font-bold uppercase tracking-widest block">Email Address</label>
+                <label className="text-[8px] warranty-portal-label !font-bold uppercase tracking-widest block">
+                  Email Address{isAdmin ? ' (Customer)' : ''}
+                </label>
                 <div className="relative">
                   <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
                     <Mail size={12} />
                   </span>
-                  <input
-                    type="email"
-                    disabled
-                    value={currentUser.email}
-                    className="w-full bg-neutral-900/60 border border-white/15 rounded text-gray-200 p-2.5 pl-8 pr-8 cursor-not-allowed"
-                  />
-                  <span className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-600" title="Locked to your account">
-                    <Lock size={12} />
-                  </span>
+                  {isAdmin ? (
+                    <input
+                      type="email"
+                      required
+                      placeholder="Enter customer's email..."
+                      value={lookupEmail}
+                      onChange={(e) => setLookupEmail(e.target.value)}
+                      className="w-full bg-neutral-900 border border-white/15 rounded text-white placeholder-gray-400 p-2.5 pl-8 focus:outline-none focus:border-luxury-gold transition"
+                    />
+                  ) : (
+                    <>
+                      <input
+                        type="email"
+                        disabled
+                        value={currentUser.email}
+                        className="w-full bg-neutral-900/60 border border-white/15 rounded text-gray-200 p-2.5 pl-8 pr-8 cursor-not-allowed"
+                      />
+                      <span className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-600" title="Locked to your account">
+                        <Lock size={12} />
+                      </span>
+                    </>
+                  )}
                 </div>
               </div>
 
