@@ -764,6 +764,193 @@ export default function Static({ params, _onPageChange }) {
       )
     }
   ];
+  const replacementData = [
+  {
+    title: "1. Company Information",
+    content: (
+      <div className="space-y-2">
+        <p><span className="font-semibold text-luxury-text">Brand:</span> KHRONIQ</p>
+        <p><span className="font-semibold text-luxury-text">Owned & Marketed By:</span> True Knock Industries Private Limited</p>
+        <p className="font-semibold text-luxury-text mt-1">Registered Office:</p>
+        <p className="pl-3 border-l border-luxury-gold-dark/30 italic text-[11px] text-luxury-muted">
+          Office No. - 2, Chamber - 4,<br />
+          Udaigiri Tower, Kaushambi,<br />
+          Ghaziabad, Uttar Pradesh — 201010,<br />
+          India
+        </p>
+        <p><span className="font-semibold text-luxury-text">Website:</span> <a href="https://www.khroniq.com" target="_blank" rel="noopener noreferrer" className="text-luxury-gold-dark hover:underline">www.khroniq.com</a></p>
+        <p><span className="font-semibold text-luxury-text">Email:</span> support@khroniq.com</p>
+      </div>
+    )
+  },
+  {
+    title: "2. Replacement Eligibility",
+    content: (
+      <div className="space-y-2">
+        <p>A replacement request may be accepted only under the following circumstances:</p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>The product received has a confirmed manufacturing defect.</li>
+          <li>The wrong product has been delivered.</li>
+          <li>The wrong model, colour, or variant has been shipped by KHRONIQ.</li>
+          <li>The product is damaged during transit.</li>
+          <li>The package contains missing components or accessories.</li>
+          <li>The product becomes non-functional immediately upon delivery due to a manufacturing fault.</li>
+        </ul>
+        <p className="text-[11px] text-luxury-muted">Replacement requests must be submitted within 7 calendar days from the date of delivery.</p>
+      </div>
+    )
+  },
+  {
+    title: "3. Products Not Eligible For Replacement",
+    content: (
+      <div className="space-y-2">
+        <p>Replacement requests will not be accepted for:</p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>Change of mind after purchase.</li>
+          <li>Personal preference regarding design, colour, size, or appearance.</li>
+          <li>Damage caused after delivery due to misuse, negligence, accidental impact, or improper handling.</li>
+          <li>Normal wear and tear.</li>
+          <li>Glass scratches, strap wear, or cosmetic damage resulting from regular use.</li>
+          <li>Battery depletion due to normal usage (unless otherwise specified).</li>
+          <li>Water damage caused by use beyond the stated water-resistance rating.</li>
+          <li>Watches repaired or modified by unauthorized service centres.</li>
+          <li>Products with removed, altered, or damaged serial numbers or QR codes.</li>
+          <li>Customized, engraved, personalized, or made-to-order products.</li>
+          <li>Products purchased from unauthorized sellers or marketplaces not approved by KHRONIQ.</li>
+        </ul>
+      </div>
+    )
+  },
+  {
+    title: "4. Conditions For Replacement",
+    content: (
+      <div className="space-y-2">
+        <p>To qualify for a replacement, the customer must:</p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>Notify KHRONIQ within the eligible replacement period.</li>
+          <li>Provide the original purchase invoice or order confirmation.</li>
+          <li>Submit clear photographs or videos showing the reported issue.</li>
+          <li>Return the product in its original packaging.</li>
+          <li>Include the warranty card, manuals, accessories, tags, and protective materials.</li>
+          <li>Ensure that the product has not been intentionally damaged or tampered with.</li>
+        </ul>
+        <p className="text-[11px] text-luxury-muted">KHRONIQ reserves the right to reject any replacement request that does not meet these conditions.</p>
+      </div>
+    )
+  },
+  {
+    title: "5. Replacement Request Process",
+    content: (
+      <div className="space-y-2">
+        <p>To request a replacement:</p>
+        <ol className="list-decimal pl-5 space-y-1">
+          <li>Contact KHRONIQ Customer Support.</li>
+          <li>Provide your Order Number or Invoice Number.</li>
+          <li>Share photographs or videos of the product and packaging.</li>
+          <li>Wait for written approval from KHRONIQ.</li>
+          <li>Return the product only after receiving replacement authorization.</li>
+          <li>Pack the product securely to prevent transit damage.</li>
+        </ol>
+        <p className="text-[11px] text-luxury-muted">Replacement requests submitted without prior approval may not be processed.</p>
+      </div>
+    )
+  },
+  {
+    title: "6. Product Inspection",
+    content: (
+      <div className="space-y-2">
+        <p>Every returned product will undergo inspection by KHRONIQ.</p>
+        <p>If the inspection confirms that:</p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>The issue is covered under this Policy; and</li>
+          <li>The product has not been misused, altered, or damaged by the customer,</li>
+        </ul>
+        <p>a replacement may be approved.</p>
+        <p className="text-[11px] text-luxury-muted">If no manufacturing defect or eligible issue is found, KHRONIQ reserves the right to decline the replacement request and return the product to the customer.</p>
+      </div>
+    )
+  },
+  {
+    title: "7. Availability Of Replacement",
+    content: (
+      <div className="space-y-2">
+        <p>Replacement is subject to stock availability.</p>
+        <p>If the identical model is unavailable, KHRONIQ may, at its sole discretion:</p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>Replace the product with the same model once available;</li>
+          <li>Offer an equivalent model of equal or higher value; or</li>
+          <li>Offer another suitable resolution in accordance with applicable law.</li>
+        </ul>
+      </div>
+    )
+  },
+  {
+    title: "8. Shipping For Replacement",
+    content: "Where a replacement is approved due to an error by KHRONIQ, such as a manufacturing defect, transit damage, or incorrect shipment, KHRONIQ may arrange pickup or bear the reasonable shipping cost. If the product is found not to qualify for replacement, the customer may be responsible for applicable shipping charges."
+  },
+  {
+    title: "9. Replacement Of Replacement Products",
+    content: "A replacement product continues to be covered only for the remaining period of the original warranty, unless otherwise required by applicable law. Replacement does not restart or extend the original warranty period."
+  },
+  {
+    title: "10. Fraud Prevention",
+    content: (
+      <div className="space-y-2">
+        <p>KHRONIQ reserves the right to reject any replacement request involving:</p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>False claims.</li>
+          <li>Fraudulent transactions.</li>
+          <li>Misrepresentation.</li>
+          <li>Repeated abuse of the replacement process.</li>
+          <li>Intentional product damage.</li>
+          <li>Submission of counterfeit or unauthorized products.</li>
+        </ul>
+        <p className="text-[11px] text-luxury-muted">Appropriate legal action may be taken where necessary.</p>
+      </div>
+    )
+  },
+  {
+    title: "11. Limitation Of Liability",
+    content: (
+      <div className="space-y-2">
+        <p>KHRONIQ shall not be liable for:</p>
+        <ul className="list-disc pl-5 space-y-1">
+          <li>Delays caused by courier partners.</li>
+          <li>Delays due to Force Majeure events.</li>
+          <li>Loss or damage arising from unauthorized repairs.</li>
+          <li>Indirect, incidental, or consequential damages.</li>
+        </ul>
+        <p className="text-[11px] text-luxury-muted">Our total liability shall not exceed the purchase price actually paid for the product concerned.</p>
+      </div>
+    )
+  },
+  {
+    title: "12. Force Majeure",
+    content: "KHRONIQ shall not be responsible for delays in processing replacement requests caused by circumstances beyond its reasonable control, including pandemics, floods, earthquakes, fires, government restrictions, transport disruptions, customs delays, strikes, wars, cyber incidents, or other Force Majeure events."
+  },
+  {
+    title: "13. Policy Modifications",
+    content: "KHRONIQ reserves the right to amend, modify, or update this Replacement Policy at any time without prior notice. The latest version shall always be available on https://www.khroniq.com/. Continued use of the Website after such modifications constitutes acceptance of the revised Policy."
+  },
+  {
+    title: "14. Governing Law & Jurisdiction",
+    content: "This Replacement Policy shall be governed by and interpreted in accordance with the laws of India. Any dispute arising out of or relating to this Policy shall be subject to the exclusive jurisdiction of the competent courts at Lucknow, Uttar Pradesh, unless otherwise required by applicable law."
+  },
+  {
+    title: "15. Contact Us",
+    content: (
+      <div className="space-y-2">
+        <p className="font-bold text-luxury-text">KHRONIQ</p>
+        <p>A Premium Watch Brand by True Knock Industries Private Limited</p>
+        <div className="pl-3 border-l border-luxury-gold-dark/30 text-[11px] text-luxury-muted space-y-0.5">
+          <p><span className="font-semibold text-luxury-text">Registered Office:</span> OFFICE NO. - 2, CHAMBER - 4, UDAIGIRI TOWER, KAUSHAMBI, GHAZIABAD, UTTAR PRADESH — 201010, India</p>
+          <p><span className="font-semibold text-luxury-text">Website:</span> www.khroniq.com</p>
+          <p><span className="font-semibold text-luxury-text">Email:</span> support@khroniq.com</p>
+        </div>
+      </div>
+    )
+  }
+];
     const shippingData = [
     {
       title: "1. Company Information",
@@ -1594,7 +1781,7 @@ export default function Static({ params, _onPageChange }) {
           { key: 'about', label: 'Our Story' },
           { key: 'contact', label: 'Boutique Contact' },
           { key: 'shipping', label: 'Shipping Policy' },
-          { key: 'exchange', label: 'Exchange Policy' },
+         { key: 'exchange', label: 'Replacement Policy' },
           { key: 'refund', label: 'Refund Policy' },
           { key: 'warranty', label: 'Warranty Policy' },
           { key: 'privacy', label: 'Privacy Policy' },
@@ -1818,30 +2005,42 @@ export default function Static({ params, _onPageChange }) {
 )}
 
 
-        {/* EXCHANGE POLICY TAB */}
-        {activeTab === 'exchange' && (
-          <div className="space-y-6 text-xs text-luxury-muted leading-relaxed font-light">
-            <h3 className="text-lg font-bold text-luxury-text font-serif uppercase tracking-wide">Exchange Policy</h3>
-            <div className="space-y-4">
-              <p>
-                We strive for absolute satisfaction with every purchase. If your timepiece does not fit your expectation, we accommodate sizing and model exchanges.
-              </p>
-              <p>
-                <strong>Exchange Criteria:</strong>
-                <br />
-                - Ready-stock timepieces are eligible for exchange within 14 days of receipt.
-                <br />
-                - The watch must be unworn, unmodified, and in pristine condition with all protective seals, wrapping, and tags intact.
-              </p>
-              <p>
-                <strong>Bespoke Exclusions:</strong>
-                <br />
-                Customized or engraved watches are uniquely manufactured to your specifications and are not eligible for exchanges unless a clear manufacturing defect is present.
-              </p>
-            </div>
-          </div>
-        )}
 
+       {/* REPLACEMENT POLICY TAB */}
+{activeTab === 'exchange' && (
+  <div className="space-y-6 text-xs text-luxury-muted leading-relaxed font-light">
+    <h3 className="text-lg font-bold text-luxury-text font-serif uppercase tracking-wide">Replacement Policy</h3>
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pt-4">
+      <div className="md:col-span-4 space-y-2 max-h-[500px] overflow-y-auto pr-2 border-r border-luxury-text/10 sticky top-24 hidden md:block">
+        <p className="text-[10px] font-bold text-luxury-text uppercase tracking-widest mb-3">Table of Contents</p>
+        {replacementData.map((item, idx) => (
+          <button
+            key={idx}
+            onClick={() => {
+              const element = document.getElementById(`replacement-section-${idx}`);
+              if (element) element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }}
+            className="block text-left w-full text-[10px] py-1.5 px-2 hover:bg-luxury-gold-dark/5 hover:text-luxury-gold-dark transition rounded font-medium truncate cursor-pointer"
+          >
+            {item.title}
+          </button>
+        ))}
+      </div>
+      <div className="md:col-span-8 space-y-6 max-h-[600px] overflow-y-auto pr-2">
+        <p className="text-[11px] text-luxury-muted italic mb-4">Effective Date: 1st July 2026</p>
+        <p className="text-[11px] text-luxury-muted mb-4">
+          This Replacement Policy explains the circumstances under which products purchased through our Website are eligible for replacement.
+        </p>
+        {replacementData.map((item, idx) => (
+          <section key={idx} id={`replacement-section-${idx}`} className="space-y-2 scroll-mt-24 pb-4 border-b border-luxury-text/5 last:border-b-0">
+            <h4 className="font-bold text-luxury-text uppercase text-[10px] tracking-wider">{item.title}</h4>
+            <div className="text-[11px] font-light text-luxury-muted leading-relaxed">{item.content}</div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </div>
+)}
       {/* REFUND POLICY TAB */}
 {activeTab === 'refund' && (
   <div className="space-y-6 text-xs text-luxury-muted leading-relaxed font-light">

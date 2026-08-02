@@ -36,7 +36,7 @@ const NAV_COLS = [
       { label: 'Register My Watch',   action: 'warranty' },
       { label: 'Shipping Policy',     page: 'static',  args: { view: 'shipping' } },
       { label: 'Cancellation Policy', page: 'static',  args: { view: 'cancellation' } },
-      { label: 'Exchange Policy',     page: 'static',  args: { view: 'exchange' } },
+      { label: 'Replacement Policy',  page: 'static',  args: { view: 'exchange' } },
       { label: 'Refund Policy',       page: 'static',  args: { view: 'refund' } },
       { label: 'Warranty Policy',     page: 'static',  args: { view: 'warranty' } },
     ],
@@ -590,3 +590,4 @@ export default function Footer({ onPageChange, onWarrantyOpen }) {
     </footer>
   );
 }
+
