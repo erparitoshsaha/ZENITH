@@ -799,7 +799,7 @@ const defaultHomeImages = {
   hero_slide4_product: '/assets/watch_uploaded_1.jpg',
   hero_slide5_lifestyle: '/assets/lifestyle_silver_new.png',
   hero_slide5_product: '/assets/watch_uploaded_5.jpg',
-  khronomaster_professional: '/assets/spotlight_green_side.png',
+  khronomaster_professional: '/assets/spotlight_red_angled.png',
   dive_deeper_tile1: '/assets/spotlight_green_side.png',
   dive_deeper_tile2: '/assets/spotlight_red_overhead.png'
 };
@@ -809,7 +809,7 @@ export default function Home({ onPageChange, onUpdatesOpen, onUpdatesClose, upda
   const [homeImages, setHomeImages] = useState(defaultHomeImages);
   const [selectedProductIndex, setSelectedProductIndex] = useState(0);
   const spotlightImages = [
-    homeImages.khronomaster_professional || "/assets/spotlight_green_side.png",
+    homeImages.khronomaster_professional || "/assets/spotlight_red_angled.png",
     "/assets/watch_red.jpg",
     "/assets/t6.png",
     "/assets/watch_uploaded_3.jpg",
