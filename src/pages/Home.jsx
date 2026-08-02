@@ -629,7 +629,7 @@ function LifestyleShowcaseSlider({ products, onPageChange, homeImages }) {
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // Auto-play timer
   useEffect(() => {
@@ -801,31 +801,15 @@ const defaultHomeImages = {
   hero_slide5_product: '/assets/watch_uploaded_5.jpg',
   khronomaster_professional: '/assets/spotlight_red_angled.png',
   dive_deeper_tile1: '/assets/spotlight_green_side.png',
-  dive_deeper_tile2: '/assets/spotlight_red_overhead.png'
+  dive_deeper_tile2: '/assets/spotlight_red_overhead.png',
+  khroniq_updates: '/assets/khroniq_updates_bg.jpg'
 };
 
 export default function Home({ onPageChange, onUpdatesOpen, onUpdatesClose, updatesOpen }) {
   const products = useSelector(state => state.watch.products);
   const [homeImages, setHomeImages] = useState(defaultHomeImages);
   const [selectedProductIndex, setSelectedProductIndex] = useState(0);
-  const spotlightImages = [
-    homeImages.khronomaster_professional || "/assets/spotlight_red_angled.png",
-    "/assets/watch_red.jpg",
-    "/assets/t6.png",
-    "/assets/watch_uploaded_3.jpg",
-  ];
-
-  const [spotlightIndex, setSpotlightIndex] = useState(0);
-
-  const nextSpotlight = () => {
-    setSpotlightIndex((prev) => (prev + 1) % spotlightImages.length);
-  };
-
-  const prevSpotlight = () => {
-    setSpotlightIndex((prev) =>
-      prev === 0 ? spotlightImages.length - 1 : prev - 1
-    );
-  };
+  const spotlightImage = homeImages.khronomaster_professional || "/assets/spotlight_red_angled.png";
   const currentCurrency = useSelector(selectCurrentCurrency);
 
   useEffect(() => {
@@ -983,18 +967,8 @@ export default function Home({ onPageChange, onUpdatesOpen, onUpdatesClose, upda
     setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
   }, [maxIndex]);
 
-  useEffect(() => {
-    if (products.length <= visibleCards) return;
-    const timer = setInterval(nextSlide, 1600);
-    return () => clearInterval(timer);
-  }, [nextSlide, visibleCards, products.length, currentIndex]);
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSpotlightIndex((prev) => (prev + 1) % spotlightImages.length);
-    }, 3000); // 3 sec
 
-    return () => clearInterval(interval);
-  }, []);
+
   const fallbackFeatured = [
     {
       id: 'kq-01',
@@ -1290,22 +1264,12 @@ export default function Home({ onPageChange, onUpdatesOpen, onUpdatesClose, upda
             style={{ perspective: "1800px" }}
           >
 
-            <AnimatePresence mode="sync">
-              <motion.div
-                key={spotlightIndex}
-                className="absolute inset-0 bg-cover bg-center"
-                style={{
-                  backgroundImage: `url(${spotlightImages[spotlightIndex]})`,
-                }}
-                initial={{ opacity: 0, scale: 1.06 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{
-                  duration: 0.8,
-                  ease: "easeInOut",
-                }}
-              />
-            </AnimatePresence>
+            <div
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+              style={{
+                backgroundImage: `url(${spotlightImage})`,
+              }}
+            />
 
             <div className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-transparent" />
 
@@ -1609,15 +1573,17 @@ export default function Home({ onPageChange, onUpdatesOpen, onUpdatesClose, upda
       <div
         ref={updatesRef}
         className="relative w-full h-[100vh] flex items-center justify-center overflow-hidden bg-black text-white"
-        style={{
-          backgroundImage: "url('/assets/t6.png')",
-          backgroundAttachment: 'fixed',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
       >
+        {/* Background Image with slight opacity/fade */}
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-65"
+          style={{
+            backgroundImage: `url(${homeImages.khroniq_updates || "/assets/khroniq_updates_bg.jpg"})`,
+            backgroundAttachment: 'fixed',
+          }}
+        />
         {/* Dark Overlay to align with the premium black theme */}
-        <div className="absolute inset-0 bg-black/35 z-10" />
+        <div className="absolute inset-0 bg-black/40 z-10" />
 
         {/* Vertical Tab sticking to the extreme left of this section only, spanning full height */}
         <button
