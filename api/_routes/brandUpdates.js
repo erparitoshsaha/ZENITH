@@ -23,6 +23,30 @@ router.get('/', async (req, res) => {
       updates = allApproved.slice(0, 3);
     }
 
+    // Secondary fallback: if database is completely empty, provide premium mock updates
+    if (updates.length === 0) {
+      updates = [
+        {
+          _id: "mock-update-1",
+          title: "Khroniq Professional Launch",
+          detail: "The all-new Khronomaster Professional series is now officially live. Crafted with precision in India, featuring high-frequency chronograph movements and anti-reflective sapphire crystal.",
+          createdAt: new Date()
+        },
+        {
+          _id: "mock-update-2",
+          title: "Swadeshi Warranty Activation",
+          detail: "You can now verify the authenticity of your timepiece online. Register your watch using the claim code and serial number to activate your 2-year manufacturer warranty.",
+          createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000)
+        },
+        {
+          _id: "mock-update-3",
+          title: "Bespoke Customizer Live",
+          detail: "Tailor your watch to match your individual style. Our bespoke online customizer is active. Choose your custom strap, dial, and hand color combinations today.",
+          createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000)
+        }
+      ];
+    }
+
     res.json({ success: true, updates });
   } catch (error) {
     console.error('Fetch brand updates error:', error);
