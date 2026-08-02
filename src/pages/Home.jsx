@@ -312,7 +312,7 @@ function CollectionCard({ col, idx, onPageChange }) {
         {/* Top: Num & Header */}
         <div className="space-y-3">
           <span className="text-[10px] sm:text-xs font-black tracking-[0.25em]" style={{ color: col.dark ? '#ffffff' : numColor }}>
-            {col.num} —
+            {col.num} — {col.num === '02' && <span className="text-white">DEFY</span>}
           </span>
           <div className="space-y-1 sm:space-y-1.5">
             <h3 className="font-serif text-xl sm:text-2xl font-black uppercase tracking-wider leading-tight">
